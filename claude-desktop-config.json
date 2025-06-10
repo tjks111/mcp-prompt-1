@@ -10,7 +10,7 @@
         "top-secret",
         "--",
         "node",
-        "mcp-prompts-v2/dist/http-proxy.js"
+        "mcp-prompts-v2/dist/index.js"
       ]
     }
   }
