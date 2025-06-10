@@ -1,0 +1,13 @@
+{
+  "name": "example",
+  "description": "An example prompt",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "type": "text",
+        "text": "Hello, {name}!"
+      }
+    }
+  ]
+}

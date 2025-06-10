@@ -1,0 +1,12 @@
+{
+  "description": "A new prompt",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "type": "text",
+        "text": "Hello, {name}!"
+      }
+    }
+  ]
+}
