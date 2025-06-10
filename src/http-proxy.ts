@@ -3,8 +3,18 @@ import { spawn } from 'child_process';
 
 const mcpServer = spawn('node', ['dist/index.js']);
 
+import { URL } from 'url';
+
 const server = http.createServer((req, res) => {
-  if (req.headers.authorization !== 'Bearer top-secret') {
+  if (!req.url) {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Bad Request' }));
+    return;
+  }
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const apiKey = url.searchParams.get('api_key');
+
+  if (req.headers.authorization !== 'Bearer top-secret' && apiKey !== 'top-secret') {
     res.writeHead(401, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Unauthorized' }));
     return;
