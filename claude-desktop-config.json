@@ -1,15 +1,17 @@
 {
-  "mcp-prompts-server": {
-    "command": "uvx",
-    "args": [
-      "mcpo",
-      "--port",
-      "8003",
-      "--api-key",
-      "top-secret",
-      "--",
-      "node",
-      "mcp-prompts-v2/dist/http-proxy.js"
-    ]
+  "mcpServers": {
+    "mcp-prompts-server": {
+      "command": "uvx",
+      "args": [
+        "mcpo",
+        "--port",
+        "8003",
+        "--api-key",
+        "top-secret",
+        "--",
+        "node",
+        "mcp-prompts-v2/dist/http-proxy.js"
+      ]
+    }
   }
 }
