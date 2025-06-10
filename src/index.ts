@@ -21,13 +21,52 @@ const server = new McpServer({
 });
 
 // Add a search tool
-server.tool("search", "Search for prompts by keyword.", async () => {
-  return { content: [{ type: "text", text: "search results" }] };
+server.tool("search", {
+  description: "Search for prompts by keyword.",
+  input: z.object({ query: z.string() }),
+  output: z.object({
+    results: z.array(z.object({
+      id: z.string(),
+      title: z.string(),
+      text: z.string(),
+      url: z.string().nullable(),
+    }))
+  })
+}, async ({ query }) => {
+  const prompts = await promptService.listPrompts();
+  const results = prompts.filter(prompt => prompt.includes(query)).map(prompt => ({
+    id: prompt,
+    title: prompt,
+    text: "A prompt for generating text.",
+    url: null
+  }));
+  return { content: [{ type: "text", text: JSON.stringify({ results }) }] };
 });
 
 // Add a fetch tool
-server.tool("fetch", "Fetch a prompt by ID.", async () => {
-  return { content: [{ type: "text", text: "fetch result" }] };
+server.tool("fetch", {
+  description: "Fetch a prompt by ID.",
+  input: z.object({ id: z.string() }),
+  output: z.object({
+    id: z.string(),
+    title: z.string(),
+    text: z.string(),
+    url: z.string().nullable(),
+    metadata: z.record(z.string()).nullable(),
+  })
+}, async ({ id }) => {
+  const prompt = await promptService.getPrompt(id);
+  return {
+    content: [{
+      type: "text", text: JSON.stringify({
+        id,
+        title: id,
+        text: JSON.stringify(prompt),
+        url: null,
+        metadata: null
+      })
+    }]
+  };
 });
 
 // Start receiving messages on stdin and sending messages on stdout
