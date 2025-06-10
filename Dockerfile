@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install any needed packages
 RUN npm install
+RUN npm install -g typescript
 
 # Bundle app source
 COPY . .
