@@ -1,13 +1,9 @@
 {
-  "name": "MCP Prompts v2",
-  "command": "npm start",
-  "env": {
-    "DEBUG": "mcp*,bp*"
-  },
-  "transports": [
-    {
-      "type": "stdio",
-      "enabled": true
-    }
-  ]
+  "mcp-prompts-server": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@sparesparrow/mcp-prompts"
+    ]
+  }
 }
