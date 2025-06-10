@@ -1,9 +1,15 @@
 {
   "mcp-prompts-server": {
-    "command": "npx",
+    "command": "uvx",
     "args": [
-      "-y",
-      "@sparesparrow/mcp-prompts"
+      "mcpo",
+      "--port",
+      "8003",
+      "--api-key",
+      "top-secret",
+      "--",
+      "node",
+      "mcp-prompts-v2/dist/http-proxy.js"
     ]
   }
 }
