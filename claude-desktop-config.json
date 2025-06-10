@@ -1,15 +1,8 @@
 {
   "mcpServers": {
     "mcp-prompts-server": {
-      "command": "uvx",
+      "command": "node",
       "args": [
-        "mcpo",
-        "--port",
-        "8003",
-        "--api-key",
-        "top-secret",
-        "--",
-        "node",
         "mcp-prompts-v2/dist/index.js"
       ]
     }
