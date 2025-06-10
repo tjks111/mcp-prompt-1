@@ -9,7 +9,6 @@ COPY package*.json ./
 
 # Install any needed packages
 RUN npm install
-RUN chmod +x -R /usr/src/app/node_modules/.bin
 
 # Bundle app source
 COPY . .
