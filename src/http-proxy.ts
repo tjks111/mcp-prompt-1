@@ -4,6 +4,8 @@ import { spawn } from 'child_process';
 const mcpServer = spawn('node', ['dist/index.js']);
 
 const server = http.createServer((req, res) => {
+  req.setTimeout(120000);
+  res.setTimeout(120000);
   if (req.headers.authorization !== 'Bearer top-secret') {
     res.writeHead(401, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Unauthorized' }));
